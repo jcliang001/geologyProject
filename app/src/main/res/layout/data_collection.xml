@@ -16,7 +16,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/btn_sand"
             android:layout_marginStart="40dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.403"
-    />
+            android:textSize="48dp"/>
 
     <Button
             android:text="Sand"
@@ -24,63 +24,74 @@
             android:layout_height="275dp" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="68dp" android:id="@+id/btn_sand"
             android:background="#FFFFFF"
-            android:layout_marginStart="72dp" app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginStart="72dp" app:layout_constraintStart_toStartOf="parent" android:textSize="48dp"/>
     <TextView
             android:text="File Name"
-            android:layout_width="199dp"
-            android:layout_height="84dp"
-            android:id="@+id/textView20"
+            android:layout_width="198dp"
+            android:layout_height="82dp"
+            android:id="@+id/id_file_display"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="72dp" android:gravity="center"
             android:background="@drawable/border"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" android:layout_marginTop="32dp"
-            android:textSize="24dp" app:layout_constraintHorizontal_bias="0.027"
-            app:layout_constraintEnd_toStartOf="@+id/textView21"/>
+            android:textSize="24dp" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/id_layer_count"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/id_bed"/>
     <TextView
-            android:text="Layer Count"
             android:layout_width="210dp"
             android:layout_height="84dp"
-            android:id="@+id/textView21"
+            android:id="@+id/id_layer_count"
             android:gravity="center" android:background="@drawable/border"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" android:layout_marginTop="32dp"
-            android:textSize="24dp" android:layout_marginEnd="64dp" app:layout_constraintEnd_toEndOf="parent"
-    />
+            android:textSize="24dp" android:layout_marginEnd="60dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/id_bed"/>
     <Button
             android:text="Save"
             android:layout_width="137dp"
             android:layout_height="116dp"
-            android:id="@+id/button11"
+            android:id="@+id/btn_save"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/textView20"
-    />
+            android:layout_marginStart="92dp"
+            android:textSize="30dp" android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/id_file_display"/>
+
     <Button
             android:text="END OF RUN"
             android:layout_width="137dp"
             android:layout_height="116dp"
-            android:id="@+id/button12"
+            android:id="@+id/btn_end"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="52dp"
-            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/textView21"
-            app:layout_constraintStart_toEndOf="@+id/button11" android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.574"/>
+            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/id_layer_count"
+            app:layout_constraintStart_toEndOf="@+id/btn_save" android:layout_marginStart="8dp"
+            app:layout_constraintHorizontal_bias="0.682" android:textSize="24dp"/>
     <EditText
-            android:layout_width="463dp"
-            android:layout_height="86dp"
+            android:layout_width="464dp"
+            android:layout_height="42dp"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/editText2"
-            android:hint="@string/thickness_input" android:layout_marginTop="372dp"
+            android:id="@+id/id_thickness"
+            android:hint="@string/thickness_input" android:layout_marginTop="368dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="44dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.363"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.329"
             android:background="@drawable/border" android:textSize="24dp"/>
     <AutoCompleteTextView
-            android:layout_width="463dp"
-            android:layout_height="86dp"
-            android:id="@+id/autoCompleteTextView" android:hint="Note"
+            android:layout_width="465dp"
+            android:layout_height="42dp"
+            android:id="@+id/id_note" android:hint="Note"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="52dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.277" android:background="@drawable/border"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" android:layout_marginTop="56dp"
+            app:layout_constraintHorizontal_bias="0.289" android:background="@drawable/border"
+            app:layout_constraintTop_toBottomOf="@+id/id_thickness" android:layout_marginTop="16dp"
             android:textSize="24dp"/>
+    <EditText
+            android:layout_width="466dp"
+            android:layout_height="42sp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/id_bed"
+            app:layout_constraintTop_toBottomOf="@+id/id_note"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/border" android:hint="Bed ID" android:textSize="24sp"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.97" android:layout_marginTop="8dp"/>
 </android.support.constraint.ConstraintLayout>
