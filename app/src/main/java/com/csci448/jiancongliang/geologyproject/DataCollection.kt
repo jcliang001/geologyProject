@@ -1,11 +1,16 @@
 package com.csci448.jiancongliang.geologyproject
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
@@ -26,7 +31,7 @@ class DataCollection : AppCompatActivity() {
     private var note = ""
     private var thickness = 0.0
     private val CSV_HEADER = "id,name,address,age"
-
+    private val REQUEST_CODE_PERMISSION = 1
     companion object {
         private const val LOG_TAG = "Geo.DataCollection"
         private var layer_count = 0
@@ -38,6 +43,9 @@ class DataCollection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.data_collection)
+
+//        verifyPermissions()
+
         file_name = intent.getStringExtra(MainActivity.FILE_NAME_EXTRA)
         id_file_display.text = file_name
         val idx = mutableListRun.size + 1
@@ -46,18 +54,34 @@ class DataCollection : AppCompatActivity() {
         //sand button
         btn_sand.setOnClickListener {
             btn_mud.setBackgroundColor(Color.WHITE)
-            btn_sand.setBackgroundColor(Color.RED)
+            btn_sand.setBackgroundColor(Color.YELLOW)
+            btn_other.setBackgroundColor(Color.WHITE)
             type = "sand"
             type_num = 1
+
         }
         //mud button
         btn_mud.setOnClickListener {
             btn_sand.setBackgroundColor(Color.WHITE)
-            btn_mud.setBackgroundColor(Color.RED)
+            btn_mud.setBackgroundColor(Color.BLUE)
+            btn_other.setBackgroundColor(Color.WHITE)
             type = "mud"
             type_num = 0
 
 
+        }
+        //other button
+        btn_other.setOnClickListener {
+            btn_sand.setBackgroundColor(Color.WHITE)
+            btn_mud.setBackgroundColor(Color.WHITE)
+            btn_other.setBackgroundColor(Color.RED)
+            type = "other"
+            type_num = 2
+
+        }
+
+        btn_camera.setOnClickListener {
+//            dispatchCameraTaker()
         }
 
         //save button
@@ -88,7 +112,47 @@ class DataCollection : AppCompatActivity() {
         }
 
     }
+//
+//    private fun verifyPermissions(){
+//        Log.d(LOG_TAG, "Verify permissiongs")
+//
+//        val read_external_permission = ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//            Manifest.permission.READ_EXTERNAL_STORAGE)
+//        val write_external_permission = ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//        val camera_permission = ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//            Manifest.permission.CAMERA)
+//
+//        if (read_external_permission == PackageManager.PERMISSION_GRANTED
+//                && write_external_permission == PackageManager.PERMISSION_GRANTED
+//                && camera_permission == PackageManager.PERMISSION_GRANTED) {
+//            Log.i(LOG_TAG, "Permission to record denied")
+//        }
+//        else{
+////            ActivityCompat.requestPermissions(this,
+////                permissions,
+////                REQUEST_CODE_PERMISSION)
+//        }
+//
+//    }
 
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+//        verifyPermissions()
+//    }
 
-
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if(resultCode == RESULT_OK){
+//            if(requestCode == 1){
+//                val bitmap = BitmapFactory.decodeFile()
+//            }
+//        }
+//    }
+//    fun dispatchCameraTaker(){
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        startActivityForResult(intent, 1)
+//    }
+//    fun createPhotoFile(){
+//        val name = Simpl
+//    }
 }
