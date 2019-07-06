@@ -58,7 +58,7 @@ class DataCollection : AppCompatActivity() {
             btn_other.setBackgroundColor(Color.WHITE)
             type = "sand"
             type_num = 1
-
+            setC()
         }
         //mud button
         btn_mud.setOnClickListener {
@@ -67,8 +67,7 @@ class DataCollection : AppCompatActivity() {
             btn_other.setBackgroundColor(Color.WHITE)
             type = "mud"
             type_num = 0
-
-
+            setC()
         }
         //other button
         btn_other.setOnClickListener {
@@ -77,7 +76,7 @@ class DataCollection : AppCompatActivity() {
             btn_other.setBackgroundColor(Color.RED)
             type = "other"
             type_num = 2
-
+            setC()
         }
 
         btn_camera.setOnClickListener {
@@ -86,31 +85,57 @@ class DataCollection : AppCompatActivity() {
 
         //save button
         btn_save.setOnClickListener {
-            thickness = id_thickness.getText().toString().toDouble()
-            val index =  mutableListRun.size
-            bed_id = id_bed.getText().toString()
-            note = id_note.getText().toString()
 
-            val run_object = Run(file_name, index+1, type, type_num.toString(), thickness, bed_id, note)
-            mutableListRun.add(run_object)
-            Toast.makeText(this, mutableListRun.get(0).thickness.toString(), Toast.LENGTH_SHORT).show()
-            btn_sand.setBackgroundColor(Color.WHITE)
-            btn_mud.setBackgroundColor(Color.WHITE)
-            id_note.setText("")
-            id_bed.setText("")
-            id_thickness.setText("")
-            val idx = mutableListRun.size + 1
-            id_layer_count.text = idx.toString()
+            if(type==""){
+                btn_sand.setTextColor(Color.RED)
+                btn_other.setTextColor(Color.RED)
+                btn_mud.setTextColor(Color.RED)
+
+            }else if(TextUtils.isEmpty(id_thickness.getText().toString())){
+                id_thickness.error="Enter thicknexx"
+            }
+            else{
+                thickness = id_thickness.getText().toString().toDouble()
+                val index =  mutableListRun.size
+                bed_id = id_bed.getText().toString()
+                note = id_note.getText().toString()
+
+                val run_object = Run(file_name, index+1, type, type_num.toString(), thickness, bed_id, note)
+                mutableListRun.add(run_object)
+                Toast.makeText(this, mutableListRun.get(0).thickness.toString(), Toast.LENGTH_SHORT).show()
+                btn_sand.setBackgroundColor(Color.WHITE)
+                btn_mud.setBackgroundColor(Color.WHITE)
+                btn_other.setBackgroundColor(Color.WHITE)
+                type=""
+                id_note.setText("")
+                id_bed.setText("")
+                id_thickness.setText("")
+                val idx = mutableListRun.size + 1
+                id_layer_count.text = idx.toString()
+
+            }
+
+
 
         }
 
         //end of run button
         btn_end.setOnClickListener {
+         if(TextUtils.isEmpty(id_thickness.getText().toString())){
             Toast.makeText(this, "End of run.", Toast.LENGTH_SHORT).show()
             id_input_text.setText("")
             this.finish()
         }
+           else{
+             btn_end.error="You need to save first"
+         }
+        }
 
+    }
+    private fun setC(){
+        btn_sand.setTextColor(Color.BLACK)
+        btn_other.setTextColor(Color.BLACK)
+        btn_mud.setTextColor(Color.BLACK)
     }
 //
 //    private fun verifyPermissions(){
